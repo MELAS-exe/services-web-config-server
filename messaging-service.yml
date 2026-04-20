@@ -1,0 +1,16 @@
+server:
+  port: 8083
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongodb:27017/messaging_db # La messagerie utilise souvent NoSQL (Mongo)
+  rabbitmq:
+    host: rabbitmq # Pour la queue de messages mentionnée dans ton diagramme d'architecture
+
+# Cette partie normallement devrait prendre des variables d'environnement mais nous allons l'implémenter ainsi pour vous 
+# permettre de démarrer rapidement
+encryption: 
+  salt: ef5b4c42a42e5b2c
+  password: voom-pass
+  
