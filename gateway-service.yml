@@ -4,13 +4,13 @@ server:
 spring:
   cloud:
     gateway:
-      # 1. On configure le CORS globalement pour autoriser n'importe quel client (idéal pour le dev local)
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: "*"
+            allowedOriginPatterns: "*"
             allowedMethods: "*"
             allowedHeaders: "*"
+            allowCredentials: true  
       routes:
         # Route pour les requêtes REST classiques
         - id: messaging-rest
@@ -19,9 +19,6 @@ spring:
             - Path=/api/messages/**
         
         # 2. Route pour le WebSocket (SockJS)
-        # On utilise "http://" au lieu de "ws://". Spring Cloud Gateway est assez
-        # intelligent pour gérer la requête HTTP /info de SockJS, puis "upgrader"
-        # la connexion en vrai WebSocket automatiquement !
         - id: messaging-ws
           uri: http://messaging-service:8083
           predicates:
