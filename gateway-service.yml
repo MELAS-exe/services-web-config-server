@@ -5,17 +5,7 @@ spring:
   cloud:
     gateway:
       default-filters:
-        # 1. Évite le bug du "Double CORS" si le backend renvoie déjà les en-têtes
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
-      globalcors:
-        # 2. Indispensable pour que la Gateway réponde correctement aux requêtes OPTIONS de SockJS
-        add-to-simple-url-handler-mapping: true 
-        cors-configurations:
-          '[/**]':
-            allowedOriginPatterns: "*"
-            allowedMethods: "*"
-            allowedHeaders: "*"
-            allowCredentials: true
       routes:
         # Route pour les requêtes REST classiques
         - id: messaging-rest
