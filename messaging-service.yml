@@ -4,9 +4,9 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb://mongodb:27017/messaging_db # La messagerie utilise souvent NoSQL (Mongo)
+    uri: ${SPRING_DATA_MONGODB_URI:mongodb://mongodb:27017/messaging_db}
   rabbitmq:
-    host: rabbitmq # Pour la queue de messages mentionnée dans ton diagramme d'architecture
+    host: rabbitmq
 
 # Cette partie normallement devrait prendre des variables d'environnement mais nous allons l'implémenter ainsi pour vous 
 # permettre de démarrer rapidement
